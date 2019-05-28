@@ -33,3 +33,16 @@ alter table stavka add foreign key (proizvod) references proizvod(sifra);
 insert into proizvod (naziv,cijena) values ('monitor',899.00), ('tablet',1499.00), ('slušalice',99.00);
 insert into racun (datum) values ('2019-05-05');
 insert into stavka (racun, proizvod) values (1,1);
+
+select * from proizvod;
+select * from stavka;
+select * from racun;
+
+alter table racun add column porez decimal (18,2);
+
+update racun set porez=rand()*100;
+
+insert into proizvod (naziv,cijena) values ('zvucnik',799.00);
+
+
+select 'gotova_vjezba';
