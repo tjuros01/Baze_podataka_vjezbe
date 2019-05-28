@@ -10,7 +10,7 @@ sifra int not null primary key auto_increment,
 ime varchar(50) not null,
 prezime varchar(50) not null,
 oib char(11),
-naredeni int not null
+nadredeni int not null
 );
 
 
@@ -25,6 +25,14 @@ svecenik int not null,
 posao int not null
 );
 
-alter table svecenik add foreign key (naredeni) references svecenik(sifra);
+alter table svecenik add foreign key (nadredeni) references svecenik(sifra);
 alter table posaoSvecenika add foreign key (svecenik) references svecenik(sifra);
 alter table posaoSvecenika add foreign key (posao) references posao(sifra);
+
+# naredba insert
+
+insert into svecenik(ime,prezime,nadredeni) values ('Marko','Milinkovic',1),('Josip','Ivic',1),('Darko','Guskic',2);
+insert into posao (naziv) values ('priprema kaleza'),('priprema evandelja'),('priprema hostije'),('drzanje nastave u zupi');
+#insert into posaoSvecenika (svecenik,posao) values (1,4),(2,2),(3,1),(3,3);
+
+select 'GOTOVO';
