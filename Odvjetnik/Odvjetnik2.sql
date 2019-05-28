@@ -6,7 +6,6 @@ c:\xampp\mysql\bin\mysql -uedunova -pedunova --default_character_set=utf8 < "X:\
 
 */
 
-
 drop database if exists Odvjetnik2;
 create database Odvjetnik2 default character set utf8;
 use Odvjetnik2;
@@ -43,3 +42,11 @@ create table suradnikobrana(
 suradnik int not null,
 obrana int not null
 );
+
+# POVEZIVANJE VANJSKIH KLJUČEVA
+
+alter table obrana add foreign key (odvjetnik) references odvjetnik(sifra);
+alter table obrana add foreign key (klijent) references klijent(sifra);
+
+alter table suradnikobrana add foreign key (obrana) references obrana(sifra);
+alter table suradnikobrana add foreign key (suradnik) references suradnik(sifra);
