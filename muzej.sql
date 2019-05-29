@@ -30,3 +30,21 @@ naziv varchar(50) not null,
 kustos int not null,
 sponzor int not null
 );
+
+create table djeloIzlozba(
+djelo int not null,
+izlozba int not null
+);
+
+alter table izlozba add foreign key (kustos) references kustos(sifra);
+alter table izlozba add foreign key (sponzor) references sponzor(sifra);
+alter table djeloIzlozba add foreign key (djelo) references djelo(sifra);
+alter table djeloIzlozba add foreign key (izlozba) references izlozba (sifra);
+
+
+#dodavanje vrijednosti
+insert into kustos (ime,prezime,ovlasten) values ('Ivan','Ivic',true),('Josip','Markovic',true),('Goran','Bare',true);
+insert into sponzor(naziv,donacija) values ('Pepsi',900.00),('Mercedes',1900.00),('ATM', 2500.00);
+insert into djelo (naziv) values ('kost glave T-rexa'),('Kosti necega');
+insert into izlozba (naziv,kustos,sponzor) values ('Prva',1,2),('Druga',2,1),('Treca',3,3);
+insert into djeloIzlozba (djelo,izlozba) values (1,1),(2,3),(2,2);
