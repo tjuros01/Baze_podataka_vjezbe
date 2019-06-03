@@ -7479,3 +7479,16 @@ insert into katalog (sifra, naslov, autor, izdavac,mjesto) values (3218, 'ODVOJE
 insert into katalog (sifra, naslov, autor, izdavac,mjesto) values (3219, 'NOVI SVIJET DUHA', 18993, 408, 69698);
 insert into katalog (sifra, naslov, autor, izdavac,mjesto) values (3220, 'RUM PUNČ', 15903, 479, 70173);
 insert into katalog (sifra, naslov, autor, izdavac,mjesto) values (3221, 'KRALJICA ŠKOLE', 19299, 441, 71323);
+
+
+
+# baza knjižnica
+# izlistati sve knjige s ljubavnom tematikom
+select  a.sifra, b.ime, b.prezime, a.naslov,
+c.naziv as izdavac,d.naziv as mjesto
+from katalog a inner join autor b 
+on a.autor=b.sifra
+inner join izdavac c on a.izdavac=c.sifra
+inner join mjesto d on a.mjesto=d.sifra
+where a.naslov like '%ljubav%'
+and a.sifra in (2660,2664,2879,2938);
