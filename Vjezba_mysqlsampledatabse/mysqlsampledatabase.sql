@@ -10,7 +10,12 @@ Version 2.0
 + changed table type to InnoDB
 + added foreign keys for all tables 
 *********************************************************************
-*/
+*//*
+
+c:\xampp\mysql\bin\mysql -uedunova -pedunova --default_character_set=utf8 < "X:\GitHub\Baze_podataka_vjezbe\Vjezba_mysqlsampledatabse\mysqlsampledatabase.sql"
+
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -229,3 +234,10 @@ UNLOCK TABLES;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+# Izlistajte sve proizvode u liniji prizvoda Vlakovi
+
+select b.productName
+from productlines a inner join products b
+on a.productLine=b.productLine
+where a.productLine='Trains';
