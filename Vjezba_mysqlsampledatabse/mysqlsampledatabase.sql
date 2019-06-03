@@ -241,3 +241,24 @@ select b.productName
 from productlines a inner join products b
 on a.productLine=b.productLine
 where a.productLine='Trains';
+
+
+#izlistati sva jedinstevna imena i prezimena kupaca koji su kupili proizvode u liniji proizvoda Trains
+
+select distinct e.contactLastName,e.contactFirstName
+from productlines a inner join products b
+on a.productLine=b.productLine
+inner join orderdetails c
+on b.productCode=c.productCode
+inner join orders d
+on c.orderNumber=d.orderNumber
+inner join customers e
+on d.customerNumber=e.customerNumber
+where a.productLine='Trains';
+
+
+#izlistati sve glavne sefove
+
+select * from employees where reportsTo is null;
+
+MARy i jeff su prvi podredeni - naci kod kuce to
