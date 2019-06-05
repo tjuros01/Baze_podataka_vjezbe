@@ -285,4 +285,23 @@ where a.contactFirstName='Jean'and
 a.contactLastName='King'
 ;
 
+#izlistajte sva imena i prezimena kupaca te njihove ukupne iznose narudzbi ukoilko je cijena mnajmanje stavke narudzbe veća od 35
+select a.contactFirstName,a.contactLastName #sum(c.priceEach*c.quantityOrdered) as ukupno, min(c.priceEach) as stavka
+from customers a inner join orders b
+on a.customerNumber=b.customerNumber
+inner join orderdetails c
+on b.orderNumber=c.orderNumber
+group by a.contactFirstName, a.contactLastName
+having min (c.priceEach)>35
+
+union
+
+
+#izvucite sve kupce za koje je zaduzen Vanauf George
+select b.contactFirstName, b.contactLastName#0 as ukupno
+from employees a inner join customers b
+on a.employeeNumber=b.salesRepEmployeeNumber
+where a.firstName='George' and a.lastName='Vanauf'
+;
+
 SELECT 'GOTOVO';
