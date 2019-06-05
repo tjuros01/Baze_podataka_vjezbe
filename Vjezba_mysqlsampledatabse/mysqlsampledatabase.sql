@@ -275,6 +275,14 @@ group by a.orderNumber, a.orderDate
 having sum(b.priceEach*b.quantityOrdered)>50000
 order by 3 desc;
 
-
+##Koliko je prosjecno po narudzbi potrosio King Jean
+select avg(c.priceEach*c.quantityOrdered)
+from customers a inner join orders b
+on a.customerNumber=b.customerNumber
+inner join orderdetails c
+on b.orderNumber=c.orderNumber
+where a.contactFirstName='Jean'and
+a.contactLastName='King'
+;
 
 SELECT 'GOTOVO';
