@@ -235,17 +235,16 @@ UNLOCK TABLES;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-# Izlistajte sve proizvode u liniji prizvoda Vlakovi
+#VJEZBE
 
+#izlistati sve proizvode u liniji proizvoda Vlakovi
 select b.productName
 from productlines a inner join products b
 on a.productLine=b.productLine
 where a.productLine='Trains';
 
-
 #izlistati sva jedinstevna imena i prezimena kupaca koji su kupili proizvode u liniji proizvoda Trains
-
-select distinct e.contactLastName,e.contactFirstName
+select distinct e.contactLastName, e.contactFirstName
 from productlines a inner join products b
 on a.productLine=b.productLine
 inner join orderdetails c
@@ -256,9 +255,10 @@ inner join customers e
 on d.customerNumber=e.customerNumber
 where a.productLine='Trains';
 
-
 #izlistati sve glavne sefove
+select * from employees where reportsTo is null; #njezina sifra je 1002
 
-select * from employees where reportsTo is null;
+#izlistati prve podredene od glavnog sefa
+select * from employees where reportsTo=1002;
 
-MARy i jeff su prvi podredeni - naci kod kuce to
+SELECT 'GOTOVO';
