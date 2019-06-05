@@ -304,4 +304,72 @@ on a.employeeNumber=b.salesRepEmployeeNumber
 where a.firstName='George' and a.lastName='Vanauf'
 ;
 
+#uvecaj sve kolicine prodanih stavki proizvoda Setra Bus za 1
+update products a
+inner join orderdetails b on a.productCode=b.productCode
+set b.quantityOrdered=b.quantityOrdered+3
+where a.productName='1958 Setra Bus'
+;
+
+#izlistajte koliko se ukupno prodalo proizvoda Setra Bus
+select count (b.quantityOrdered)
+from products a inner join orderdetails b on a.productCode=b.productCode
+where a.productName='1958 Setra Bus';
+
+#izlistati sve proizvode koji se nisu prodali niti jednom
+select * from products
+where productCode not in
+(select distinct productCode from orderdetails);
+
+select count(*) from products; 
+
+
+
+#obrisati sve stavke kupnje od King Jean
+
+#sve sto je kupio King Jean
+select d.productName
+from customers a inner join orders b 
+on a.customerNumber=b.customerNumber
+inner join orderdetails c
+on b.orderNumber=c.orderNumber
+inner join products d
+on c.productCode=d.productCode
+ where a.contactFirstName='Jean' and a.contactLastName='King'
+;
+
+#brisanje svih kupljenih stavki
+delete a
+from orderdetails a 
+inner join orders b on a.orderNumber = b.orderNumber
+inner join customers c on b.customerNumber=c.customerNumber
+where c.contactFirstName='Jean' and 
+c.contactLastName='King';
+
+
+#pronadite sve kupce koji nemaju definiranog prodajnog predstavnika 
+# i od tih rezultata kreirajte novu tablic s nazivom
+#nemajuprodavaca
+create table nemajuprodavaca
+select * from customers where salesRepEmployeeNumber is null;
+select * from nemajuprodavaca;
+
+#kupci koji nisu naveli adresu stanovanja
+select * from customers where addressLine1 is not null;
+
+
+#izvucite sve kupce koji se ne nalaze u nemajupredavaca
+#a nalaze se u customers
+select * from customers where customerNumber
+not in (select distinct customerNumber from nemajuprodavaca);
+
+
+#Izlistajte sve kupce koji su platili vise od 100.000 dolara odjednom
+
+#ima ih 5 ali se ponavljaju
+select distinct b.contactFirstName
+from payments a inner join customers b
+on a.customerNumber=b.customerNumber
+where a.amount>100000;
+
 SELECT 'GOTOVO';
