@@ -261,4 +261,20 @@ select * from employees where reportsTo is null; #njezina sifra je 1002
 #izlistati prve podredene od glavnog sefa
 select * from employees where reportsTo=1002;
 
+
+#having, sum vjezbe
+select  a.orderNumber as broj,a.orderDate as datum, sum(b.priceEach*b.quantityOrdered) as ukupno,
+count (b.orderNumber) as stavaka,
+min (b.priceEach) as najjeftinije,
+max(b.priceEach) as najskuplje,
+avg(b.priceEach) as prosjecna
+from orders a 
+inner join orderdetails b on a.orderNumber=b.orderNumber
+inner join products c on b.productCode=c.productCode
+group by a.orderNumber, a.orderDate
+having sum(b.priceEach*b.quantityOrdered)>50000
+order by 3 desc;
+
+
+
 SELECT 'GOTOVO';
