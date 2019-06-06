@@ -27,7 +27,7 @@ create table coach(
 coach_id int not null primary key auto_increment,
 FirstName varchar(50) not null,
 LastName varchar(50) not null,
-HeadCoach int not null 
+HeadCoach int  
 );
 
 create table game(
@@ -71,3 +71,19 @@ alter table game add foreign key (Awayteam) references team(team_id);
 alter table coach add foreign key (HeadCoach) references coach(coach_id);
 alter table stats add foreign key (player) references player(player_id);
 alter table stats add foreign key (game) references game(game_id);
+
+
+insert into player (FirstName,LastName) values ('Kevin','Durant'),('Stephen','Curry'),('Klay','Thompson'),('DeMarcus','Cousins'),
+('Draymond','Green'),('Kawhi','Leonard'),('Pascal','Siakam'),('Kyle','Lowry'),('Mark','Gasol'),('Serge','Ibaka');
+
+insert into team (Name,Location) values ('Golden State Warriors','Oakland'),('Toronto Raptors','Toronto');
+
+insert into coach (FirstName,LastName,HeadCoach) values ('Steve','Kerr',null),('Mike','Brown',1),('Jarron','Rollins',1),('Ron','Adams',1),('Nick','Nurse',null),
+('Patrick','Mutombo',5),('Jim','Sann',5),('Eric','Khoury',5);
+
+insert into game (Location,Hometeam,Awayteam) values ('Toronto',2,1),('Toronto',2,1),('Oakland',1,2);
+
+insert into stats(player,game) values (2,1),(3,2),(7,1),(7,3);
+
+insert into player_team (player,team) values (1,1),(2,1),(3,1),(4,1),(5,1),(6,2),(7,2),(8,2),(9,2),(10,2);
+insert into player_coach (coach,team) values (1,1),(2,1),(3,1),(4,1),(5,2),(6,2),(7,2),(8,2);
