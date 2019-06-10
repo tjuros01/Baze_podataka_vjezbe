@@ -508,5 +508,3 @@ $$
 
 delete from customers where customerNumber=99999;
 
-
-SELECT 'GOTOVO';
