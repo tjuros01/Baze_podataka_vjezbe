@@ -372,4 +372,141 @@ from payments a inner join customers b
 on a.customerNumber=b.customerNumber
 where a.amount>100000;
 
+
+# FUNKCIJE
+#
+#funcija ima naziv i listu parametara koju prima odvojenih zarezom
+select now();
+
+#funkcija left prima 2 parametra, left vraca varchar
+select distinct left(Firstname,1) from employees
+order by 1 asc;
+
+
+#izvuci sve narudzbe iz 5.mj 2003.
+select * from orders
+where month(orderDate)=5 and year(orderDate)=2003;
+
+#2.nacin
+select * from orders
+where orderDate like '2003-05%';
+
+select distinct year(orderDate) from orders;
+
+select adddate(now(),interval -45 day);
+
+#koliko puta do sada u vasem zivotu je vase srce prosjecno otkucalo (prosjek 80 u minuti)
+select datediff(now(),'1994-05-29')*24*60*80;
+
+
+select contactFirstName, contactLastName from customers;
+
+select lower(
+concat(left(contactFirstName,1),contactLastName,'@edunova.hr'
+
+
+)),
+contactFirstName,contactLastName
+from customers;
+
+# user function
+# dbeaver Windows -> Preferences -> u find SQL P pa u dijelu 
+# statements delimiter promjeniti na $$
+create function email(ime varchar(100),prezime varchar(100))
+returns varchar(220)
+begin
+	return lower(
+	concat(
+		left(ime,1),
+		prezime,
+		'@edunova.hr'
+	)
+);
+end;
+$$
+# u postavkama dbeaver vratiti delimiter na ;
+select email(contactFirstName, contactLastName ) from customers;
+
+select email('Tomislav','Jakopec');
+
+
+# procedura
+# obrisati sve podatke iz baze o kupcu Jean King
+
+create procedure brisiKupca(ime varchar(100), prezime varchar(100))
+begin
+	delete a
+	from orderdetails a inner join orders b
+	on a.orderNumber=b.orderNumber 
+	inner join customers c on b.customerNumber =c.customerNumber 
+	where c.contactFirstName=ime and c.contactLastName=prezime;
+	
+	delete b
+	from orders b
+	inner join customers c on b.customerNumber =c.customerNumber 
+	where c.contactFirstName=ime and c.contactLastName=prezime;
+	
+	delete b
+	from payments b
+	inner join customers c on b.customerNumber =c.customerNumber 
+	where c.contactFirstName=ime and c.contactLastName=prezime;
+	
+	delete from customers where 
+	contactFirstName=ime and contactLastName=prezime;
+
+end;
+$$
+
+select * from customers where contactFirstName='Jean';
+
+call brisiKupca('Jean','King');
+
+# èitati https://mariadb.com/kb/en/library/cursor-overview/
+
+
+
+create table log(
+sifra int not null primary key auto_increment,
+sto varchar(100) not null,
+kada datetime not null default now(),
+vrijednosti varchar(255) not null
+);
+
+create trigger uc1 after insert on customers for each row
+begin
+	insert into log(sto,vrijednosti) values
+	('kupac',concat('ime: ',new.contactFirstName));
+end;
+$$
+
+
+INSERT INTO classicmodels.customers
+(`customerNumber`, `customerName`, `contactLastName`, `contactFirstName`, phone, `addressLine1`, `addressLine2`, city, state, `postalCode`, country, `salesRepEmployeeNumber`, `creditLimit`)
+VALUES(99999, '', '', 'Pero', '', '', '', '', '', '', '', null, 0);
+
+
+select * from log;
+
+create trigger uc2 after update on customers for each row
+begin
+	insert into log(sto,vrijednosti) values
+	('kupac',concat('ime staro : ',old.contactFirstName,
+	'ime novo: ', new.contactFirstName));
+end;
+$$
+
+update customers set contactFirstName='Marko' where customerNumber=99999;
+
+
+
+create trigger uc3 after delete on customers for each row
+begin
+	insert into log(sto,vrijednosti) values
+	('kupac',concat('obrisano : ',old.contactFirstName));
+end;
+$$
+
+delete from customers where customerNumber=99999;
+
+
 SELECT 'GOTOVO';
