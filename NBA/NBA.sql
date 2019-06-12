@@ -83,7 +83,7 @@ insert into coach (FirstName,LastName,HeadCoach) values ('Steve','Kerr',null),('
 
 ('Lloyd','Pierce',null),('Melvin','Hunt',null),('Chris','Jent',null),('Greg','Foster',null),
 ('Brad','Stevens',null),('Jaime','Young',null),('Jay','Larranaga',null),('Jerome','Allen',null),('Micah','Shrewsberry',null),('Scott','Morrison',null),
-('Kenny','Atkinson',null),
+('Kenny','Atkinson',null),('Jacque','Vaughn',null),('Chris','Fleming',null),('Bret','Brielmaier',null),('Adam','Harrington',null),
 ('James','Borrego',null),
 ('Jim','Boylen',null),
 ('John','Beilein',null),
