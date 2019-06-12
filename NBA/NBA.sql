@@ -79,7 +79,37 @@ insert into player (FirstName,LastName) values ('Kevin','Durant'),('Stephen','Cu
 insert into team (Name,Location) values ('Golden State Warriors','Oakland'),('Toronto Raptors','Toronto');
 
 insert into coach (FirstName,LastName,HeadCoach) values ('Steve','Kerr',null),('Mike','Brown',1),('Jarron','Rollins',1),('Ron','Adams',1),('Nick','Nurse',null),
-('Patrick','Mutombo',5),('Jim','Sann',5),('Eric','Khoury',5);
+('Patrick','Mutombo',5),('Jim','Sann',5),('Eric','Khoury',5),
+
+('Lloyd','Pierce',null),
+('Brad','Stevens',null),
+('Kenny','Atkinson',null),
+('James','Borrego',null),
+('Jim','Boylen',null),
+('John','Beilein',null),
+('Rick','Carlisle',null),
+('Michael','Malone',null),
+('Dwayne','Casey',null),
+('Mike','D''Antoni',null),
+('Nate','McMillan',null),
+('Doc','Rivers',null),
+('Frank','Vogel',null),
+('Taylor','Jenkins',null),
+('Erik','Spoelstra',null),
+('Mike','Budenholzer',null),
+('Ryan','Saunders',null),
+('Alvin','Gentry',null),
+('David','Fizdale',null),
+('Billy','Donovan',null),
+('Steve','Clifford',null),
+('Brett','Brown',null),
+('Monty','Williams',null),
+('Terry','Stotts',null),
+('Luke','Walton',null),
+('Gregg','Popovich',null),
+('Quin','Snyder',null),
+('Scott','Brooks',null);
+
 
 insert into game (Location,Hometeam,Awayteam) values ('Toronto',2,1),('Toronto',2,1),('Oakland',1,2);
 
