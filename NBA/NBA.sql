@@ -81,8 +81,8 @@ insert into team (Name,Location) values ('Golden State Warriors','Oakland'),('To
 insert into coach (FirstName,LastName,HeadCoach) values ('Steve','Kerr',null),('Mike','Brown',1),('Jarron','Rollins',1),('Ron','Adams',1),('Nick','Nurse',null),
 ('Patrick','Mutombo',5),('Jim','Sann',5),('Eric','Khoury',5),
 
-('Lloyd','Pierce',null),
-('Brad','Stevens',null),
+('Lloyd','Pierce',null),('Melvin','Hunt',null),('Chris','Jent',null),('Greg','Foster',null),
+('Brad','Stevens',null),('Jaime','Young',null),('Jay','Larranaga',null),('Jerome','Allen',null),('Micah','Shrewsberry',null),('Scott','Morrison',null),
 ('Kenny','Atkinson',null),
 ('James','Borrego',null),
 ('Jim','Boylen',null),
